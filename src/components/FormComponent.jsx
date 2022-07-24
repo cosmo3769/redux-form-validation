@@ -2,7 +2,7 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import Input from './input'
 import Select from './select'
-import { required } from './validators'
+import { name, required } from './validators'
 
 
 // const required = value => value ? undefined : 'Required'
@@ -57,7 +57,7 @@ let FormComponent = (props) => {
         }}
         label="Prefix*"
         validate={required} />
-      <Field name="firstName" type="text" component={Input} label="First Name*" validate={required} />
+      <Field name="firstName" type="text" component={Input} label="First Name*" validate={[required, name]} />
       <Field name="middleName" type="text" component={Input} label="Middle Name" validate={required}/>
       <Field name="lastName" type="text" component={Input} label="LastName*" validate={required}/>
       <Field name="tin" type="number" component={Input} label="Tin/Ssn*" validate={required}/>
