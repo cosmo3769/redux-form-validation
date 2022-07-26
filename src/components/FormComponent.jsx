@@ -31,7 +31,7 @@ let FormComponent = (props) => {
         options={countryList}
         label="Country*"
         validate={required} />
-      {country === 'United States of America (the)' &&
+      {country !== 'US' &&
           <Field name="middleName" type="text" component={Input} label="Middle Name" validate={[name, maxLength]}/>
       }
       <button type="submit">Submit</button>
