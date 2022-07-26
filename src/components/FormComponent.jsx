@@ -7,7 +7,7 @@ import Select from './select'
 import { maxLength, name, required, tinorssn } from './validators'
 
 let FormComponent = (props) => {
-  const { handleSubmit, formValues, country } = props
+  const { handleSubmit, country } = props
   return (
     <form onSubmit={handleSubmit}>
       <Field 
