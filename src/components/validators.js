@@ -18,7 +18,7 @@ export const maxLength = value => {
 }
 
 export const tinorssn = value => {
-  if (value && !/^(?:\d{3}-\d{2}-\d{4}|\d{2}-\d{7}|^[1-9][0-9]*$)$/) {
+  if (value && !/^(?:\d{3}-\d{2}-\d{4}|\d{2}-\d{7})$/.test(value) && !/[0-9]/.test(value)) {
       return 'Invalid tin/ssn!'
   }
 }
