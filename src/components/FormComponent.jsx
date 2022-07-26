@@ -32,7 +32,10 @@ let FormComponent = (props) => {
         label="Country*"
         validate={required} />
       {country !== 'US' &&
-          <Field name="middleName" type="text" component={Input} label="Middle Name" validate={[name, maxLength]}/>
+            <div>
+                <Field name="middleName" type="text" component={Input} label="Middle Name" validate={[name, maxLength]}/>
+                <Field name="lastName" type="text" component={Input} label="LastName*" validate={[required, name, maxLength]}/>
+            </div>
       }
       <button type="submit">Submit</button>
     </form>
