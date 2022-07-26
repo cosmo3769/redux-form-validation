@@ -1,4 +1,4 @@
-import FormComponent from './components/FormComponent'
+import FormComponent from "./components/FormComponent";
 
 function App() {
   const submit = values => {
