@@ -1,12 +1,13 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, formValueSelector } from 'redux-form'
 import countryList from './countries'
 import Input from './input'
 import Select from './select'
+import { connect } from 'react-redux'
 import { maxLength, name, required, tinorssn } from './validators'
 
 let FormComponent = (props) => {
-  const { handleSubmit, formValues } = props
+  const { handleSubmit, countryValue } = props
   return (
     <form onSubmit={handleSubmit}>
       <Field 
@@ -30,9 +31,9 @@ let FormComponent = (props) => {
         options={countryList}
         label="Country*"
         validate={required} />
-      {/* {formValues && formValues.country === 'Ukraine' ? (
+      {countryValue && countryValue === 'Ukraine' ? (
           <Field name="middleName" type="text" component={Input} label="Middle Name" validate={[name, maxLength]}/>
-        ) : ''} */}
+        ) : ''}
       <button type="submit">Submit</button>
     </form>
   )
@@ -40,6 +41,16 @@ let FormComponent = (props) => {
 
 FormComponent = reduxForm({
   form: 'contact',
+})(FormComponent)
+
+const selector = formValueSelector('contact') // <-- same as form name
+FormComponent = connect(state => {
+  // can select values individually
+  const countryValue = selector(state, 'country')
+  // or together as a group
+  return {
+    countryValue,
+  }
 })(FormComponent)
 
 export default FormComponent
