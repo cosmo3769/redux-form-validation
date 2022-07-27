@@ -1,7 +1,8 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import FormComponentFirst from './FormComponentFirst'
 import FormComponentSecond from './FormComponentSecond'
 import FormComponentThird from './FormComponentThird'
+import PropTypes from 'prop-types'
 
 class FormComponent extends Component {
   constructor(props) {
