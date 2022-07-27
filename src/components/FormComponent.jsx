@@ -1,60 +1,40 @@
-import React from 'react'
-import { Field, formValueSelector, reduxForm } from 'redux-form'
-import { connect } from 'react-redux'
-import countryList from './countries'
-import Input from './input'
-import Select from './select'
-import { maxLength, name, required, tinorssn } from './validators'
+import React, { Component } from 'react'
+import FormComponentFirst from './FormComponentFirst'
+import FormComponentSecond from './FormComponentSecond'
+import FormComponentThird from './FormComponentThird'
+import PropTypes from 'prop-types'
 
-let FormComponent = (props) => {
-  const { handleSubmit, country } = props
-  return (
-    <form onSubmit={handleSubmit}>
-      <Field 
-        name="prefix" 
-        component={Select}
-        options={{
-          Mr: 'Mr.',
-          Mrs: 'Mrs.',
-          Miss: 'Miss.',
-          Dr: 'Dr.'
-        }}
-        label="Prefix*"
-        validate={required} />
-      <Field name="firstName" type="text" component={Input} label="First Name*" validate={[required, name, maxLength]} />
-      <Field name="middleName" type="text" component={Input} label="Middle Name" validate={[name, maxLength]}/>
-      <Field name="lastName" type="text" component={Input} label="LastName*" validate={[required, name, maxLength]}/>
-      <Field name="tin" type="number" component={Input} label="Tin/Ssn*" validate={[required, tinorssn]}/>
-      <Field 
-        name="country" 
-        component={Select}
-        options={countryList}
-        label="Country*"
-        validate={required} />
-      {country !== 'US' &&
-            <div>
-                <Field name="middleName" type="text" component={Input} label="Middle Name" validate={[name, maxLength]}/>
-                <Field name="lastName" type="text" component={Input} label="LastName*" validate={[required, name, maxLength]}/>
-            </div>
-      }
-      <button type="submit">Submit</button>
-    </form>
-  )
+class FormComponent extends Component {
+  constructor(props) {
+    super(props)
+    this.nextPage = this.nextPage.bind(this)
+    this.previousPage = this.previousPage.bind(this)
+    this.state = {
+      page: 1
+    }
+  }
+  nextPage() {
+    this.setState({ page: this.state.page + 1 })
+  }
+
+  previousPage() {
+    this.setState({ page: this.state.page - 1 })
+  }
+
+  render() {
+    const { onSubmit } = this.props
+    const { page } = this.state
+    return (<div>
+        {page === 1 && <FormComponentFirst onSubmit={this.nextPage}/>}
+        {page === 2 && <FormComponentSecond previousPage={this.previousPage} onSubmit={this.nextPage}/>}
+        {page === 3 && <FormComponentThird previousPage={this.previousPage} onSubmit={onSubmit}/>}
+      </div>
+    )
+  }
 }
 
-
-FormComponent = reduxForm({
-  form: 'contact'
-})(FormComponent)
-
-const selector = formValueSelector('contact')
-
-FormComponent = connect(state => {
-  const country = selector(state, 'country')
-
-  return {
-    country
-  }
-})(FormComponent)
+FormComponent.propTypes = {
+  onSubmit: PropTypes.func.isRequired
+}
 
 export default FormComponent
