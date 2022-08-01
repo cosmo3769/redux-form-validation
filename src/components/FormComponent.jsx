@@ -3,7 +3,7 @@ import FormComponentFirst from './FormComponentFirst'
 import FormComponentSecond from './FormComponentSecond'
 import FormComponentThird from './FormComponentThird'
 import PropTypes from 'prop-types'
-
+import MultiStepProgressBar from './MultiPageProgressBar'
 class FormComponent extends Component {
   constructor(props) {
     super(props)
@@ -25,9 +25,22 @@ class FormComponent extends Component {
     const { onSubmit } = this.props
     const { page } = this.state
     return (<div>
-        {page === 1 && <FormComponentFirst onSubmit={this.nextPage}/>}
-        {page === 2 && <FormComponentSecond previousPage={this.previousPage} onSubmit={this.nextPage}/>}
-        {page === 3 && <FormComponentThird previousPage={this.previousPage} onSubmit={onSubmit}/>}
+        {page === 1 && 
+        <div>
+          <MultiStepProgressBar page={this.state.page} />
+          <FormComponentFirst onSubmit={this.nextPage}/>
+        </div>
+        }
+        {page === 2 && 
+        <div>
+          <MultiStepProgressBar page={this.state.page} />
+          <FormComponentSecond previousPage={this.previousPage} onSubmit={this.nextPage}/>
+        </div>}
+        {page === 3 && 
+        <div>
+          <MultiStepProgressBar page={this.state.page} />
+          <FormComponentThird previousPage={this.previousPage} onSubmit={onSubmit}/>
+        </div>}
       </div>
     )
   }
