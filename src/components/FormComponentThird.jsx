@@ -31,7 +31,7 @@ let FormComponentThird = (props) => {
         options={countryList}
         label="Country*"
         validate={required} />
-      {country !== 'US' &&
+      {country && country !== 'US' &&
           <Field name="middleName" type="text" component={Input} label="Middle Name" validate={[name, maxLength]}/>
       }
       <button type="button" className="previous" onClick={previousPage}>Previous</button>
