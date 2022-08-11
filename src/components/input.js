@@ -9,7 +9,7 @@ export const Input = (props) => {
         <input
             {...props.input}
             placeholder={props.label}
-            type="text"
+            type={props.type}
             className="form-input"
         />
         {props.meta.touched && ((props.meta.error && <span>{props.meta.error}</span>) || (props.meta.warning && <span>{props.meta.warning}</span>))}

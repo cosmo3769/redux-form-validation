@@ -1,4 +1,5 @@
 import {Routes, Route, useNavigate} from 'react-router-dom';
+import Cancel from './cancel';
 import FormComponent from './FormComponent';
 import Help from './help';
 
@@ -22,6 +23,7 @@ export default function Navigation() {
         <Routes>
             <Route path='/' element={<FormComponent onSubmit={submit} />}></Route>
             <Route path='/help' element={<Help/>}></Route>
+            <Route path='/cancel' element={<Cancel />}></Route>
         </Routes>
     )
 }
