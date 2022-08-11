@@ -4,6 +4,9 @@ import FormComponentSecond from './FormComponentSecond'
 import FormComponentThird from './FormComponentThird'
 import PropTypes from 'prop-types'
 import MultiStepProgressBar from './MultiPageProgressBar'
+import {Container, Row, Col} from 'react-bootstrap';
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import './styles.css'
 class FormComponent extends Component {
   constructor(props) {
     super(props)
@@ -26,10 +29,11 @@ class FormComponent extends Component {
     const { page } = this.state
     return (<div>
         {page === 1 && 
-        <div>
-          <MultiStepProgressBar page={this.state.page} />
-          <FormComponentFirst onSubmit={this.nextPage}/>
-        </div>
+          <Container className='bg-color mt-4 mb-4'>
+            <Row><h6 className='mt-4'>Personal Information</h6></Row>
+            <Row className='m-4'><MultiStepProgressBar page={this.state.page} /></Row>
+            <Row><FormComponentFirst onSubmit={this.nextPage}/></Row>
+          </Container>
         }
         {page === 2 && 
         <div>
