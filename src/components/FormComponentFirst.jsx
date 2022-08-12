@@ -8,6 +8,7 @@ import { maxLength, name, required, tinorssn } from './validators'
 import { Container, Row, Col } from 'react-bootstrap'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './styles.css'
+import ContactInput from './contact-input'
 
 
 
@@ -18,7 +19,7 @@ let FormComponentFirst = (props) => {
     <Container className='mb-4'>
     <Row>
       <Col className="col-10"><h5>Personal Information</h5></Col>
-      <Col><a href='/help'><button type='button' className='help'>Help</button></a></Col>
+      <Col><a href='#/help'><button type='button' className='help'>Help</button></a></Col>
     </Row>
     <form onSubmit={handleSubmit}>
       <Row className='bg-white m-4 border'>
@@ -49,6 +50,12 @@ let FormComponentFirst = (props) => {
       {country && country !== 'US' &&
           <Field name="middleName" type="text" component={Input} label="Middle Name" validate={[name, maxLength]}/>
       }
+      <Field 
+      name='contact'
+      component={ContactInput}
+      label="Primary Phone Number"
+      type="tel"
+      />
       <Field 
         name='billing'
         component={Input}
@@ -99,7 +106,7 @@ let FormComponentFirst = (props) => {
       </Row>
     </form>
     <Row>
-      <Col className='col-2'><a href='/cancel'><button type='button' className='cancel'>Cancel</button></a></Col>
+      <Col className='col-2'><a href='#/cancel'><button type='button' className='cancel'>Cancel</button></a></Col>
     </Row>
     </Container>
   )

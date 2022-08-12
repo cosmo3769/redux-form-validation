@@ -1,5 +1,6 @@
 import FormComponent from "./components/FormComponent";
 import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import Navigation from "./components/navigation";
 
 function App() {
@@ -8,9 +9,9 @@ function App() {
   // }
   return (
     <div className="App">
-      <Router>
+      <HashRouter>
         <Navigation />
-      </Router>
+      </HashRouter>
 	      {/* <FormComponent onSubmit={submit} /> */}
     </div>
   );
