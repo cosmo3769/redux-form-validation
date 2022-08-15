@@ -53,8 +53,7 @@ let FormComponentFirst = (props) => {
       <Field 
       name='contact'
       component={ContactInput}
-      label="Primary Phone Number"
-      type="tel"
+      // label="Primary Phone Number"
       />
       <Field 
         name='billing'
