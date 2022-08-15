@@ -8,6 +8,7 @@ function ContactInput() {
   const [value, setValue] = useState()
   return (
     <PhoneInput
+      international
       defaultCountry='US'
       placeholder="Enter phone number"
       value={value}
